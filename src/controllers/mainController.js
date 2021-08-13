@@ -20,19 +20,19 @@ const controller = {
 	search: (req, res) => {
 		let result = []
 		products.forEach(product => {
-			if(product.name.includes(req.query.keywords)) {
+			if(product.name.toLowerCase().includes(req.query.keywords.toLowerCase())) {
 				result.push(product)
 			}
 		});
-		res.send(result)
-		if (result.length !== 0) {
+		
+		
 			
 			res.render('results', {
-				result
+				result,
+				toThousand,
+				search: req.query.keywords
 			})
-		} else {
-			
-		}
+		
 	},
 };
 
